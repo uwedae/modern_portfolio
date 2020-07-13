@@ -1,6 +1,75 @@
-$primary-color: #444;
+@import "config";
+
+* {
+  box-sizing: border-box;
+}
 
 body {
+  @include background;
   background: $primary-color;
   color: #fff;
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; //Festlegen der Schriftfamilie
+  line-height: 1.5;
+}
+
+// Headings
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400; // Schriftdicke wird damit festgelegt
+
+  &.lg-heading {
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  z-index: 2; //Je größer die Z-Index, desto näher ist ein Element
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  padding: 4rem; //verhält sich 4REM in alle Richtungen
+  height: 100%;
+
+  //Gibt weitere Unterparameter für die vorher als icons definierten Symbole an
+  .icons {
+    margin-top: 1rem;
+
+    a {
+      padding: 0.4rem;
+      // Erzeugt den Hover-Effect in der 2. Farbe
+      &:hover {
+        color: $secondary-color;
+        // Implementiert den oben festgelegten easeOut Effekt
+        @include easeOut();
+      }
+    }
+  }
+
+  &#home {
+    overflow: hidden; //Damit die Scrollbar dauerhaft versteckt bleibt
+    h1 {
+      margin-top: 20vh; //10vh beschreibt wuasi 20/100 also 20% / 50vh wäre quasi die Hälfte
+    }
+  }
 }

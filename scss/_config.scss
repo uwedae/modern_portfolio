@@ -1,7 +1,10 @@
-$primary-color: #444;
-$secondary-color: #eece1a;
+$primary-color: #444; // Primärfarbe
+$secondary-color: #eece1a; //Sekundärfarbe
+//Soll das Hintergrundbild angezeigt werden? True or false
 $show-home-image: true;
+//Quelle des Hintergrundbildes
 $home-image: url(../img/background.jpg);
+//Hintergrund Transparenz
 $background-opacity: 0.4;
 
 //Legt den Hover-Effekt fest: all=alles was mit effekt belegt werden kann / ease-out ist der effekt
@@ -11,8 +14,9 @@ $background-opacity: 0.4;
 
 @mixin background() {
   @if $show-home-image {
+    //Hintergrundbild nur anzeigen, wenn Wert auf True
     &#bg-img {
-      background: $home-image;
+      background: $home-image; //Verweist auf die oben angegebene URL
       background-attachment: fixed;
       background-size: cover;
       //Overlay legt sich als transparenz über das Hintergrundbild

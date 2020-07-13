@@ -1,0 +1,42 @@
+// Menü-Button-Konfiguration
+.menu-btn {
+  //Wir wollen klar festlegen, wo das Menü platziert ist
+  position: absolute;
+  //Mit dem Z-Index legen wir es weit in den Vordergrund
+  z-index: 3;
+  //Orientierung X Pixel von rechts und oben -> Rechte obere Ecke
+  right: 35px;
+  top: 35px;
+  cursor: pointer;
+  @include easeOut;
+
+  .btn-line {
+    //Festlegung für jede einzelne Line
+    width: 28px;
+    height: 3px;
+    // margin: oben rechts unten links
+    margin: 0 0 5px 0;
+    background: #fff;
+    @include easeOut;
+  }
+
+  // Rotate Into X With Menu Lines
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      // Line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      // Line 2 - Hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      // Line 3 - Rotate
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}

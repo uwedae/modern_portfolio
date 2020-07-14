@@ -106,8 +106,8 @@
     .portrait {
       width: 250px;
       height: 250px;
-      background-size: contain;
-      background: url("/dist/img/potrait_small.jpg");
+      background-size: cover;
+      background: url("/dist/img/potrait.jpg");
       border-radius: 50%; // macht es zu einem kreis
       border: solid 3px $secondary-color; //Randlinie in Sekundärfarbe
     }
@@ -140,6 +140,7 @@
     text-decoration: none;
     @include easeOut;
 
+    //Hover in der Nav.bereich
     &:hover {
       color: $secondary-color;
     }

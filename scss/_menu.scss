@@ -40,3 +40,115 @@
     }
   }
 }
+
+// Menu Overlay
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+
+  &.show {
+    //Bei Klick auf das Hamburger Menü wird das Menü sichtbar
+    visibility: visible;
+  }
+
+  // Betrifft die beiden Klassen Branding & Nav
+  &-branding,
+  &-nav {
+    display: flex; //Liste steht übereinander nicht nebeneinander
+    flex-flow: column wrap;
+    align-items: center; // zentriert es mittig
+    justify-content: center;
+    float: left;
+    width: 50%; // Wir wollen 50% Breite, da wir zwei Menüseiten haben
+    height: 100vh; //100 von 100, also volle Höhe
+    overflow: hidden;
+  }
+
+  //Hier werden dann die einzelheiten für die Nav-Seite festgelegt
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: rgba(
+      darken($primary-color, 5),
+      0.9
+    ); // fügt den Primary-Hintergrund in dunkler ein mit Faktor 5
+    list-style: none; //entfernt die Bulletpoints der liste
+    transform: translate3d(
+      0,
+      -100%,
+      0
+    ); //die negativen hundert geben an, dass es von oben nach unten kommt
+    @include easeOut;
+
+    &.show {
+      //Slide in from Top
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  // Branding Side - Hier werden die Einzelheiten für die branding Seite angegeben
+  &-branding {
+    background: rgba($primary-color, 0.9);
+    @include easeOut;
+    transform: translate3d(
+      0,
+      100%,
+      0
+    ); //die positiven hundert geben an, dass es von unten nach oben kommt
+
+    &.show {
+      //Slide in from bottom
+      transform: translate3d(0, 0, 0);
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background-size: contain;
+      background: url("/dist/img/potrait_small.jpg");
+      border-radius: 50%; // macht es zu einem kreis
+      border: solid 3px $secondary-color; //Randlinie in Sekundärfarbe
+    }
+  }
+
+  .nav-item {
+    transform: translate3d(600px, 0, 0);
+    @include easeOut;
+
+    &.show {
+      //Slide in from right
+      transform: translate3d(0, 0, 0);
+    }
+
+    //Legt fest, dass die aktuelle Seite im Menü farbig markiert ist, setzt vorraus dass in der HTML sie als current gekennzeichnet ist
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+
+  // Design für die Schrift im Nav-Bereich
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
+    @include easeOut;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+// Delay each nav item slide by 0.1s
+@for $x from 1 through 4 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
+}
